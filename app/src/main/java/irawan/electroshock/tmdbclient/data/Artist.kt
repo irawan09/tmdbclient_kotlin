@@ -8,7 +8,7 @@ data class Artist(
     val id: Int,
 
     @SerializedName("known_for")
-    val knownFor : String?,
+    val knownFor : List<KnownFor>?,
 
     @SerializedName("name")
     val name : String?,
