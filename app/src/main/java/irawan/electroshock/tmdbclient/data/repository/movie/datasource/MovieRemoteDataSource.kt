@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.data.repository
+package irawan.electroshock.tmdbclient.data.repository.movie.datasource
 
 import irawan.electroshock.tmdbclient.data.model.movie.MovieList
 import retrofit2.Response

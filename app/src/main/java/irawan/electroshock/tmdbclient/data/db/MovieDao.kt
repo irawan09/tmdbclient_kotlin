@@ -10,7 +10,7 @@ import irawan.electroshock.tmdbclient.data.model.movie.Movie
 interface MovieDao {
 
     @Query("SELECT * FROM popular_movies")
-    suspend fun getAllMovies(movies: List<Movie>)
+    suspend fun getAllMovies(): List<Movie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveMovie(movies: List<Movie>)

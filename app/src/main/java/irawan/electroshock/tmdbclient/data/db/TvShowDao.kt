@@ -10,7 +10,7 @@ import irawan.electroshock.tmdbclient.data.model.tvshow.TvShow
 interface TvShowDao {
 
     @Query("SELECT * FROM popular_tvShows")
-    suspend fun getAllTvShows(tvShow: List<TvShow>)
+    suspend fun getAllTvShows():List<TvShow>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTvShow(tvShow: List<TvShow>)
