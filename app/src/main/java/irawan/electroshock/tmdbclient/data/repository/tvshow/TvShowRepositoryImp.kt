@@ -2,7 +2,6 @@ package irawan.electroshock.tmdbclient.data.repository.tvshow
 
 import android.util.Log
 import irawan.electroshock.tmdbclient.data.model.tvshow.TvShow
-import irawan.electroshock.tmdbclient.data.model.tvshow.TvShowList
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowCacheDataSource
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowLocalDataSource
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowRemoteDataSource
