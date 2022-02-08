@@ -1,9 +1,9 @@
 package irawan.electroshock.tmdbclient.data.api
 
-import irawan.electroshock.tmdbclient.data.model.ArtistList
+import irawan.electroshock.tmdbclient.data.model.artist.ArtistList
 import retrofit2.http.Query
-import irawan.electroshock.tmdbclient.data.model.MovieList
-import irawan.electroshock.tmdbclient.data.model.TvShowList
+import irawan.electroshock.tmdbclient.data.model.movie.MovieList
+import irawan.electroshock.tmdbclient.data.model.tvshow.TvShowList
 import retrofit2.Response
 import retrofit2.http.GET
 

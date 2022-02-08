@@ -1,12 +1,16 @@
-package irawan.electroshock.tmdbclient.data.model
+package irawan.electroshock.tmdbclient.data.model.tvshow
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "popular_tvShows")
 data class TvShow(
 
     @SerializedName("first_air_date")
     val fistAirDate: String?,
 
+    @PrimaryKey
     @SerializedName("id")
     val id: Int,
 

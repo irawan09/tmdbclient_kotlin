@@ -1,11 +1,11 @@
-package irawan.electroshock.tmdbclient.data.model
+package irawan.electroshock.tmdbclient.data.model.tvshow
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ArtistList(
+data class TvShowList(
 
     @SerializedName("results")
     @Expose
-    val artists: List<Artist>
+    val results: List<TvShow>
 )
