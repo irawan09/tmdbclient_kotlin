@@ -7,5 +7,5 @@ data class TvShowList(
 
     @SerializedName("results")
     @Expose
-    val results: List<TvShow>
+    val tvShows: List<TvShow>
 )
