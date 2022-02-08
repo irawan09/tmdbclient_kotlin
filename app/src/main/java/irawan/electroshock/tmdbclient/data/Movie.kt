@@ -7,14 +7,14 @@ data class Movie(
     val id: Int,
 
     @SerializedName("overview")
-    val overview: String,
+    val overview: String?,
 
     @SerializedName("poster_path")
-    val poster_path: String,
+    val poster_path: String?,
 
     @SerializedName("release_date")
-    val releaseDate: String,
+    val releaseDate: String?,
 
     @SerializedName("title")
-    val title: String
+    val title: String?
 )
