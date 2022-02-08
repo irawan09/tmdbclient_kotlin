@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.data
+package irawan.electroshock.tmdbclient.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
