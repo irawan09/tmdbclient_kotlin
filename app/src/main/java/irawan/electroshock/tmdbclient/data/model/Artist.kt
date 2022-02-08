@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.data
+package irawan.electroshock.tmdbclient.data.model
 
 import com.google.gson.annotations.SerializedName
 
