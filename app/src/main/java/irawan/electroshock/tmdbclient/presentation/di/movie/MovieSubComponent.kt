@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.di.movie
+package irawan.electroshock.tmdbclient.presentation.di.movie
 
 import dagger.Subcomponent
 import irawan.electroshock.tmdbclient.presentation.movie.MovieActivity

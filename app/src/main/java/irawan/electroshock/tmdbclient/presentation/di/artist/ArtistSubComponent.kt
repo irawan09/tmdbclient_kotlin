@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.di.artist
+package irawan.electroshock.tmdbclient.presentation.di.artist
 
 import dagger.Subcomponent
 import irawan.electroshock.tmdbclient.presentation.artist.ArtistActivity

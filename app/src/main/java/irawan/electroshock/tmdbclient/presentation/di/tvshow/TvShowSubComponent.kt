@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.di.tvshow
+package irawan.electroshock.tmdbclient.presentation.di.tvshow
 
 import dagger.Subcomponent
 import irawan.electroshock.tmdbclient.presentation.tvshow.TvShowActivity

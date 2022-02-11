@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.di.core
+package irawan.electroshock.tmdbclient.presentation.di.core
 
 import dagger.Module
 import dagger.Provides

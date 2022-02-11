@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.di.core
+package irawan.electroshock.tmdbclient.presentation.di.core
 
 import dagger.Module
 import dagger.Provides
@@ -8,7 +8,6 @@ import irawan.electroshock.tmdbclient.data.db.TvShowDao
 import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistLocalDataSource
 import irawan.electroshock.tmdbclient.data.repository.artist.datasourceImp.ArtistLocalDataSourceImp
 import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieLocalDataSource
-import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieRemoteDataSource
 import irawan.electroshock.tmdbclient.data.repository.movie.datasourceImp.MovieLocalDataSourceImp
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowLocalDataSource
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasourceImp.TvShowLocalDataSourceImp

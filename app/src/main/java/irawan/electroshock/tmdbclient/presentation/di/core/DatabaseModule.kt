@@ -1,4 +1,4 @@
-package irawan.electroshock.tmdbclient.di.core
+package irawan.electroshock.tmdbclient.presentation.di.core
 
 import android.content.Context
 import androidx.room.Room

@@ -1,9 +1,8 @@
-package irawan.electroshock.tmdbclient.di.core
+package irawan.electroshock.tmdbclient.presentation.di.core
 
 import dagger.Module
 import dagger.Provides
 import irawan.electroshock.tmdbclient.data.api.TMDBService
-import irawan.electroshock.tmdbclient.data.db.TMDBDatabase
 import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistRemoteDataSource
 import irawan.electroshock.tmdbclient.data.repository.artist.datasourceImp.ArtistRemoteDataSourceImp
 import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieRemoteDataSource
