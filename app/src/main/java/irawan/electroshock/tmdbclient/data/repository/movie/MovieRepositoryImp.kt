@@ -32,6 +32,7 @@ class MovieRepositoryImp(
         try{
             val response:Response<MovieList> = movieRemoteDataSource.getALlMovies()
             val body : MovieList? = response.body()
+            Log.i("MyTAG", body.toString())
             if(body!=null){
                 movieList = body.movies
             }
