@@ -1,7 +1,7 @@
 package irawan.electroshock.tmdbclient.presentation
 
 import android.app.Application
-import irawan.electroshock.tmdbclient.BuildConfig
+import irawan.electroshock.tmdbclient.R
 import irawan.electroshock.tmdbclient.presentation.di.Injector
 import irawan.electroshock.tmdbclient.presentation.di.artist.ArtistSubComponent
 import irawan.electroshock.tmdbclient.presentation.di.core.*
@@ -16,8 +16,8 @@ class App:Application(), Injector {
         super.onCreate()
         appComponent = DaggerAppComponent.builder()
             .appModule(AppModule(applicationContext))
-            .retrofitModule(RetrofitModule(BuildConfig.BASE_URL))
-            .remoteDataModule(RemoteDataModule(BuildConfig.API_KEY))
+            .retrofitModule(RetrofitModule(getString(R.string.base_url)))
+            .remoteDataModule(RemoteDataModule(getString(R.string.api_key)))
             .build()
     }
 

@@ -3,4 +3,6 @@
     <string name="artists">Artists</string>
     <string name="tv_shows">Tv Shows</string>
     <string name="movies">Movies</string>
+    <string name="api_key">9edf3fee29984e86d8be8170d810dd71</string>
+    <string name="base_url">https://api.themoviedb.org/3/</string>
 </resources>
