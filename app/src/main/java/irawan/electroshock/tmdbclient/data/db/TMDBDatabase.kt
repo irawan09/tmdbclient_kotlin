@@ -7,10 +7,12 @@ import irawan.electroshock.tmdbclient.data.model.movie.Movie
 import irawan.electroshock.tmdbclient.data.model.tvshow.TvShow
 
 @Database(entities = [Movie::class, TvShow::class, Artist::class],
-version = 1,
-exportSchema = false)
-abstract class TMDBDatabase: RoomDatabase() {
+    version = 1,
+    exportSchema = false
+)
+abstract class TMDBDatabase : RoomDatabase(){
     abstract fun movieDao(): MovieDao
     abstract fun tvDao(): TvShowDao
     abstract fun artistDao(): ArtistDao
+
 }

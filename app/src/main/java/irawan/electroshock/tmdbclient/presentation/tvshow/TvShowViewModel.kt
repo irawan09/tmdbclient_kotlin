@@ -9,19 +9,15 @@ import irawan.electroshock.tmdbclient.domain.usecase.UpdateTvShowsUseCase
 class TvShowViewModel(
     private val getTvShowsUseCase: GetTvShowsUseCase,
     private val updateTvShowsUseCase: UpdateTvShowsUseCase
-): ViewModel() {
+) : ViewModel() {
 
-    fun getTvShow() = liveData{
-        val tvShowList: List<TvShow>? = getTvShowsUseCase.execute()
+    fun getTvShows() = liveData {
+        val tvShowList = getTvShowsUseCase.execute()
         emit(tvShowList)
     }
 
-    fun updateTvShow() = liveData {
-        val tvShowList:List<TvShow>? = updateTvShowsUseCase.execute()
+    fun updateTvShows() = liveData {
+        val tvShowList = updateTvShowsUseCase.execute()
         emit(tvShowList)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
     }
 }

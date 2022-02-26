@@ -6,17 +6,21 @@ import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieLoca
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieLocalDataSourceImp(private val movieDao: MovieDao) : MovieLocalDataSource {
-    override suspend fun getMoviesFromDB(): List<Movie> = movieDao.getAllMovies()
+class MovieLocalDataSourceImpl(private val movieDao:MovieDao):
+    MovieLocalDataSource {
+    override suspend fun getMoviesFromDB(): List<Movie> {
+        return movieDao.getMovies()
+    }
 
-    override suspend fun updateMoviesToDB(movies: List<Movie>) {
+    override suspend fun saveMoviesToDB(movies: List<Movie>) {
         CoroutineScope(Dispatchers.IO).launch {
-            movieDao.saveMovie(movies)
+            movieDao.saveMovies(movies)
         }
     }
 
-    override suspend fun clearMovie() {
+    override suspend fun clearAll() {
         CoroutineScope(Dispatchers.IO).launch {
             movieDao.deleteAllMovies()
         }

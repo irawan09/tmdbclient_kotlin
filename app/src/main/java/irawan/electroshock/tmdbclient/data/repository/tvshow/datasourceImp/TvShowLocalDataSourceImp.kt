@@ -6,19 +6,23 @@ import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowLo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TvShowLocalDataSourceImp(private val tvShowDao: TvShowDao): TvShowLocalDataSource {
-    override suspend fun geTvShowFromDB(): List<TvShow> = tvShowDao.getAllTvShows()
+class TvShowLocalDataSourceImpl(private val tvDao:TvShowDao):
+    TvShowLocalDataSource {
+    override suspend fun getTvShowsFromDB(): List<TvShow> {
+        return tvDao.getTvShows()
+    }
 
-    override suspend fun updateTvShowFromDB(tvShow: List<TvShow>) {
+    override suspend fun saveTvShowsToDB(tvShows: List<TvShow>) {
         CoroutineScope(Dispatchers.IO).launch {
-            tvShowDao.insertTvShow(tvShow)
+            tvDao.saveTvShows(tvShows)
         }
     }
 
-    override suspend fun clearTvShow() {
+    override suspend fun clearAll() {
         CoroutineScope(Dispatchers.IO).launch {
-           tvShowDao.deleteAllTvShows()
+            tvDao.deleteAllTvShows()
         }
     }
 }

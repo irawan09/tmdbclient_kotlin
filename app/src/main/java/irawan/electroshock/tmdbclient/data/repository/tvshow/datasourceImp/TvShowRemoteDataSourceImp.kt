@@ -2,12 +2,14 @@ package irawan.electroshock.tmdbclient.data.repository.tvshow.datasourceImp
 
 import irawan.electroshock.tmdbclient.data.api.TMDBService
 import irawan.electroshock.tmdbclient.data.model.tvshow.TvShowList
-import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowRemoteDataSource
+import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowRemoteDatasource
 import retrofit2.Response
 
-class TvShowRemoteDataSourceImp(
+class TvShowRemoteDataSourceImpl(
     private val tmdbService: TMDBService,
-    private val apiKey: String
-): TvShowRemoteDataSource {
-    override suspend fun getAllTvShow(): Response<TvShowList> = tmdbService.getPopularTVShows(apiKey)
+    private val apiKey:String
+): TvShowRemoteDatasource {
+    override suspend fun getTvShows()
+            : Response<TvShowList> = tmdbService.getPopularTvShows(apiKey)
+
 }

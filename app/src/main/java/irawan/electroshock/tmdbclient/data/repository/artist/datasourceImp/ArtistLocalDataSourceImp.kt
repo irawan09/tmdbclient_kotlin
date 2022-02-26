@@ -6,17 +6,21 @@ import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistLo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ArtistLocalDataSourceImp(private val artistDao: ArtistDao): ArtistLocalDataSource {
-    override suspend fun getArtistFromDB(): List<Artist> = artistDao.getALlArtists()
+class ArtistLocalDataSourceImpl(private val artistDao:ArtistDao):
+    ArtistLocalDataSource {
+    override suspend fun getArtistsFromDB(): List<Artist> {
+        return artistDao.getArtists()
+    }
 
-    override suspend fun updateArtistToDB(artist: List<Artist>) {
+    override suspend fun saveArtistsToDB(artists: List<Artist>) {
         CoroutineScope(Dispatchers.IO).launch {
-            artistDao.insertArtist(artist)
+            artistDao.saveArtists(artists)
         }
     }
 
-    override suspend fun clearArtist() {
+    override suspend fun clearAll() {
         CoroutineScope(Dispatchers.IO).launch {
             artistDao.deleteAllArtists()
         }

@@ -6,6 +6,6 @@ import com.google.gson.annotations.SerializedName
 data class MovieList(
 
     @SerializedName("results")
-    @Expose
-    val  movies:List<Movie>
+    val movies: List<Movie>
+
 )

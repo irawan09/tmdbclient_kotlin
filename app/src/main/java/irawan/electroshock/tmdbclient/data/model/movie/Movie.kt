@@ -10,16 +10,13 @@ data class Movie(
     @PrimaryKey
     @SerializedName("id")
     val id: Int,
-
     @SerializedName("overview")
     val overview: String?,
-
     @SerializedName("poster_path")
-    val poster_path: String?,
-
+    val posterPath: String?,
     @SerializedName("release_date")
     val releaseDate: String?,
-
     @SerializedName("title")
     val title: String?
+
 )

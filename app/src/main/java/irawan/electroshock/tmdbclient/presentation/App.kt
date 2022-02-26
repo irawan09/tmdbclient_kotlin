@@ -1,6 +1,7 @@
 package irawan.electroshock.tmdbclient.presentation
 
 import android.app.Application
+import android.util.Log
 import irawan.electroshock.tmdbclient.R
 import irawan.electroshock.tmdbclient.presentation.di.Injector
 import irawan.electroshock.tmdbclient.presentation.di.artist.ArtistSubComponent

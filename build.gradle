@@ -8,6 +8,7 @@ buildscript {
         retrofit = '2.9.0'
         okhttp = '5.0.0-alpha.4'
         glide = '4.13.0'
+        activity_version = "1.4.0"
 
     }
     repositories {

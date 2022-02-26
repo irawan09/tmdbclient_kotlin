@@ -7,10 +7,9 @@ import irawan.electroshock.tmdbclient.R
 import irawan.electroshock.tmdbclient.databinding.ActivityTvShowBinding
 
 class TvShowActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityTvShowBinding
-
+    private lateinit var binding: ActivityTvShowBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_tv_show)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_tv_show)
     }
 }

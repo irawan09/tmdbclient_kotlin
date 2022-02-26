@@ -2,26 +2,22 @@ package irawan.electroshock.tmdbclient.presentation.artist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import irawan.electroshock.tmdbclient.data.model.artist.Artist
-import irawan.electroshock.tmdbclient.domain.usecase.GetArtistUseCase
-import irawan.electroshock.tmdbclient.domain.usecase.UpdateArtistUseCase
+import irawan.electroshock.tmdbclient.domain.usecase.GetArtistsUseCase
+import irawan.electroshock.tmdbclient.domain.usecase.UpdateArtistsUseCase
 
 class ArtistViewModel(
-    private val getArtistUseCase: GetArtistUseCase,
-    private val updateArtistUseCase: UpdateArtistUseCase
+    private val getArtistsUseCase: GetArtistsUseCase,
+    private val updateArtistsUseCase: UpdateArtistsUseCase
 ): ViewModel() {
 
-    fun getArtist() = liveData {
-        val artistList:List<Artist>? = getArtistUseCase.execute()
+    fun getArtists() = liveData {
+        val artistList = getArtistsUseCase.execute()
         emit(artistList)
     }
 
-    fun updateArtist() = liveData {
-        val artistList:List<Artist>? = updateArtistUseCase.execute()
+    fun updateArtists() = liveData {
+        val artistList = updateArtistsUseCase.execute()
         emit(artistList)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

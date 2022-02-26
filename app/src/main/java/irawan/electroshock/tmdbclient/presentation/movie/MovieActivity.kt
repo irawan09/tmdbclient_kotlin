@@ -2,6 +2,7 @@ package irawan.electroshock.tmdbclient.presentation.movie
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
@@ -14,23 +15,22 @@ import irawan.electroshock.tmdbclient.presentation.di.Injector
 import javax.inject.Inject
 
 class MovieActivity : AppCompatActivity() {
-    private  lateinit var movieViewModel: MovieViewModel
-    private lateinit var binding : ActivityMovieBinding
-
     @Inject
     lateinit var factory: MovieViewModelFactory
-
+    private lateinit var movieViewModel: MovieViewModel
+    private lateinit var binding:ActivityMovieBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie)
-        (application as Injector).createMovieSubComponent().inject(this)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_movie)
+        (application as Injector).createMovieSubComponent()
+            .inject(this)
 
-        movieViewModel = ViewModelProvider(this, factory)
+        movieViewModel=ViewModelProvider(this,factory)
             .get(MovieViewModel::class.java)
-
-        val responseLiveData:LiveData<List<Movie>?> = movieViewModel.getMovies()
-        responseLiveData.observe(this, {
-            Log.i("MyTAG", it.toString())
+        val responseLiveData = movieViewModel.getMovies()
+        responseLiveData.observe(this, Observer {
+//          Log.i("MYTAG",it.toString())
         })
+
     }
 }

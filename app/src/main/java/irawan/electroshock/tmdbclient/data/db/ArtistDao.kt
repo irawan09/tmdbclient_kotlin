@@ -9,12 +9,12 @@ import irawan.electroshock.tmdbclient.data.model.artist.Artist
 @Dao
 interface ArtistDao {
 
-    @Query("SELECT * FROM popular_artists")
-    suspend fun getALlArtists(): List<Artist>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertArtist(Artist: List<Artist>)
+    suspend fun saveArtists(artists : List<Artist>)
 
     @Query("DELETE FROM popular_artists")
     suspend fun deleteAllArtists()
+
+    @Query("SELECT * FROM popular_artists")
+    suspend fun getArtists():List<Artist>
 }

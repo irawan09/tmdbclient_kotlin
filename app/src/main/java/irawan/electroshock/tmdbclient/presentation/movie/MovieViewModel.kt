@@ -1,28 +1,25 @@
 package irawan.electroshock.tmdbclient.presentation.movie
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import irawan.electroshock.tmdbclient.data.model.movie.Movie
 import irawan.electroshock.tmdbclient.domain.usecase.GetMoviesUseCase
-import irawan.electroshock.tmdbclient.domain.usecase.UpdateMoviesUseCase
+import irawan.electroshock.tmdbclient.domain.usecase.UpdateMoviesUsecase
 
 class MovieViewModel(
-    private val getMovieUseCase: GetMoviesUseCase,
-    private val updateMovieUseCase : UpdateMoviesUseCase
+    private val getMoviesUseCase: GetMoviesUseCase,
+    private val updateMoviesUsecase: UpdateMoviesUsecase
 ): ViewModel() {
 
     fun getMovies() = liveData {
-        val movieList: List<Movie>? = getMovieUseCase.execute()
+        val movieList = getMoviesUseCase.execute()
+        Log.i("MyTAG", movieList.toString())
         emit(movieList)
     }
 
-    fun updateMovies() = liveData{
-        val movieList:List<Movie>? = updateMovieUseCase.execute()
+    fun updateMovies() = liveData {
+        val movieList = updateMoviesUsecase.execute()
         emit(movieList)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
     }
 
 }

@@ -2,72 +2,73 @@ package irawan.electroshock.tmdbclient.data.repository.tvshow
 
 import android.util.Log
 import irawan.electroshock.tmdbclient.data.model.tvshow.TvShow
-import irawan.electroshock.tmdbclient.data.model.tvshow.TvShowList
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowCacheDataSource
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowLocalDataSource
-import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowRemoteDataSource
+import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowRemoteDatasource
 import irawan.electroshock.tmdbclient.domain.repository.TvShowRepository
-import retrofit2.Response
-import java.lang.Exception
 
-class TvShowRepositoryImp(
-    private val tvShowRemoteDataSource: TvShowRemoteDataSource,
+class TvShowRepositoryImpl(
+    private val tvShowRemoteDatasource: TvShowRemoteDatasource,
     private val tvShowLocalDataSource: TvShowLocalDataSource,
     private val tvShowCacheDataSource: TvShowCacheDataSource
-): TvShowRepository {
+) : TvShowRepository {
     override suspend fun getTvShows(): List<TvShow>? {
-        return getTvShowFromCache()
+        return getTvShowsFromCache()
     }
 
     override suspend fun updateTvShows(): List<TvShow>? {
-        val newListOfTvShows: List<TvShow> = getTvShowFromAPI()
-        tvShowLocalDataSource.clearTvShow()
-        tvShowLocalDataSource.updateTvShowFromDB(newListOfTvShows)
-        tvShowCacheDataSource.saveTvShowToCache(newListOfTvShows)
+        val newListOfTvShows = getTvShowsFromAPI()
+        tvShowLocalDataSource.clearAll()
+        tvShowLocalDataSource.saveTvShowsToDB(newListOfTvShows)
+        tvShowCacheDataSource.saveTvShowsToCache(newListOfTvShows)
         return newListOfTvShows
     }
 
-    suspend fun getTvShowFromAPI(): List<TvShow>{
-        lateinit var tvShowList:List<TvShow>
+    suspend fun getTvShowsFromAPI(): List<TvShow> {
+        lateinit var tvShowList: List<TvShow>
         try {
-            val response: Response<TvShowList> = tvShowRemoteDataSource.getAllTvShow()
-            val body : TvShowList? = response.body()
-            if (body != null){
+            val response = tvShowRemoteDatasource.getTvShows()
+            val body = response.body()
+            if(body!=null){
                 tvShowList = body.tvShows
             }
-        }catch (exception:Exception){
-            Log.i("MyTAG", exception.message.toString())
+        } catch (exception: Exception) {
+            Log.i("MyTag", exception.message.toString())
         }
         return tvShowList
     }
 
-    suspend fun getTvShowFromDB(): List<TvShow>{
-        lateinit var tvShowList:List<TvShow>
+    suspend fun getTvShowsFromDB():List<TvShow>{
+        lateinit var tvShowsList: List<TvShow>
         try {
-            tvShowList = tvShowLocalDataSource.geTvShowFromDB()
-        }catch (exception:Exception){
-            Log.i("MyTAG", exception.message.toString())
+            tvShowsList = tvShowLocalDataSource.getTvShowsFromDB()
+        } catch (exception: Exception) {
+            Log.i("MyTag", exception.message.toString())
         }
-        if(tvShowList != null){
-            return tvShowList
-        }else {
-            tvShowList = getTvShowFromAPI()
-            tvShowLocalDataSource.updateTvShowFromDB(tvShowList)
+        if(tvShowsList.size>0){
+            return tvShowsList
+        }else{
+            tvShowsList=getTvShowsFromAPI()
+            tvShowLocalDataSource.saveTvShowsToDB(tvShowsList)
         }
-        return tvShowList
+
+        return tvShowsList
     }
 
-    suspend fun getTvShowFromCache(): List<TvShow>{
-        lateinit var tvShowList:List<TvShow>
+    suspend fun getTvShowsFromCache():List<TvShow>{
+        lateinit var tvShowsList: List<TvShow>
         try {
-            tvShowList = tvShowCacheDataSource.getTvShowFromCache()
-        }catch (exception:Exception){
-         Log.i("MyTAG", exception.message.toString())
+            tvShowsList =tvShowCacheDataSource.getTvShowsFromCache()
+        } catch (exception: Exception) {
+            Log.i("MyTag", exception.message.toString())
         }
-        if(tvShowList != null){
-            tvShowList = getTvShowFromDB()
-            tvShowCacheDataSource.saveTvShowToCache(tvShowList)
+        if(tvShowsList.size>0){
+            return tvShowsList
+        }else{
+            tvShowsList=getTvShowsFromDB()
+            tvShowCacheDataSource.saveTvShowsToCache(tvShowsList)
         }
-        return tvShowList
+
+        return tvShowsList
     }
 }

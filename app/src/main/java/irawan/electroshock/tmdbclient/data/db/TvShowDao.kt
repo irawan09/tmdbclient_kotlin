@@ -9,12 +9,12 @@ import irawan.electroshock.tmdbclient.data.model.tvshow.TvShow
 @Dao
 interface TvShowDao {
 
-    @Query("SELECT * FROM popular_tvShows")
-    suspend fun getAllTvShows():List<TvShow>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTvShow(tvShow: List<TvShow>)
+    suspend fun saveTvShows(tvShows : List<TvShow>)
 
     @Query("DELETE FROM popular_tvShows")
     suspend fun deleteAllTvShows()
+
+    @Query("SELECT * FROM popular_tvShows")
+    suspend fun getTvShows():List<TvShow>
 }

@@ -3,31 +3,37 @@ package irawan.electroshock.tmdbclient.presentation.di.core
 import dagger.Module
 import dagger.Provides
 import irawan.electroshock.tmdbclient.data.api.TMDBService
-import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistRemoteDataSource
-import irawan.electroshock.tmdbclient.data.repository.artist.datasourceImp.ArtistRemoteDataSourceImp
-import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieRemoteDataSource
-import irawan.electroshock.tmdbclient.data.repository.movie.datasourceImp.MovieRemoteDataSourceImp
-import irawan.electroshock.tmdbclient.data.repository.tvshow.datasourceImp.TvShowRemoteDataSourceImp
+import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistRemoteDatasource
+import irawan.electroshock.tmdbclient.data.repository.artist.datasourceImp.ArtistRemoteDataSourceImpl
+import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieRemoteDatasource
+import irawan.electroshock.tmdbclient.data.repository.movie.datasourceImp.MovieRemoteDataSourceImpl
+import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowRemoteDatasource
+import irawan.electroshock.tmdbclient.data.repository.tvshow.datasourceImp.TvShowRemoteDataSourceImpl
 import javax.inject.Singleton
 
 @Module
-class RemoteDataModule(private val apiKey:String) {
-
+class RemoteDataModule(private val apiKey: String) {
     @Singleton
     @Provides
-    fun provideRemoteMovieDataSource(tmdbService: TMDBService):MovieRemoteDataSource{
-        return MovieRemoteDataSourceImp(tmdbService, apiKey)
+    fun provideMovieRemoteDataSource(tmdbService: TMDBService): MovieRemoteDatasource {
+        return MovieRemoteDataSourceImpl(
+            tmdbService, apiKey
+        )
     }
 
     @Singleton
     @Provides
-    fun provideRemoteArtistDataSource(tmdbService: TMDBService):ArtistRemoteDataSource{
-        return ArtistRemoteDataSourceImp(tmdbService, apiKey)
+    fun provideTvRemoteDataSource(tmdbService: TMDBService): TvShowRemoteDatasource {
+        return TvShowRemoteDataSourceImpl(
+            tmdbService, apiKey
+        )
     }
 
     @Singleton
     @Provides
-    fun provideRemoteTvShowDataSource(tmdbService: TMDBService):TvShowRemoteDataSourceImp{
-        return TvShowRemoteDataSourceImp(tmdbService, apiKey)
+    fun provideArtistRemoteDataSource(tmdbService: TMDBService): ArtistRemoteDatasource {
+        return ArtistRemoteDataSourceImpl(
+            tmdbService, apiKey
+        )
     }
 }

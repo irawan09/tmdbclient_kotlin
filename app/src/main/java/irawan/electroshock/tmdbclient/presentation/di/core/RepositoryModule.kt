@@ -2,18 +2,18 @@ package irawan.electroshock.tmdbclient.presentation.di.core
 
 import dagger.Module
 import dagger.Provides
-import irawan.electroshock.tmdbclient.data.repository.artist.ArtistRepositoryImp
+import irawan.electroshock.tmdbclient.data.repository.artist.ArtistRepositoryImpl
 import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistCacheDataSource
 import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistLocalDataSource
-import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistRemoteDataSource
-import irawan.electroshock.tmdbclient.data.repository.movie.MovieRepositoryImp
+import irawan.electroshock.tmdbclient.data.repository.artist.datasource.ArtistRemoteDatasource
+import irawan.electroshock.tmdbclient.data.repository.movie.MovieRepositoryImpl
 import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieCacheDataSource
 import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieLocalDataSource
-import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieRemoteDataSource
-import irawan.electroshock.tmdbclient.data.repository.tvshow.TvShowRepositoryImp
+import irawan.electroshock.tmdbclient.data.repository.movie.datasource.MovieRemoteDatasource
+import irawan.electroshock.tmdbclient.data.repository.tvshow.TvShowRepositoryImpl
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowCacheDataSource
 import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowLocalDataSource
-import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowRemoteDataSource
+import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowRemoteDatasource
 import irawan.electroshock.tmdbclient.domain.repository.ArtistRepository
 import irawan.electroshock.tmdbclient.domain.repository.MovieRepository
 import irawan.electroshock.tmdbclient.domain.repository.TvShowRepository
@@ -22,42 +22,52 @@ import javax.inject.Singleton
 @Module
 class RepositoryModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideMovieRepository(
-        movieRemoteDataSource: MovieRemoteDataSource,
+        movieRemoteDatasource: MovieRemoteDatasource,
         movieLocalDataSource: MovieLocalDataSource,
         movieCacheDataSource: MovieCacheDataSource
-    ): MovieRepository{
-        return MovieRepositoryImp(
-            movieRemoteDataSource,
+    ): MovieRepository {
+
+        return MovieRepositoryImpl(
+            movieRemoteDatasource,
             movieLocalDataSource,
-            movieCacheDataSource)
+            movieCacheDataSource
+        )
+
+
     }
 
-    @Singleton
     @Provides
-    fun provideArtistRepository(
-        artistRemoteDataSource: ArtistRemoteDataSource,
-        artistLocalDataSource: ArtistLocalDataSource,
-        artistCacheDataSource: ArtistCacheDataSource
-    ): ArtistRepository{
-        return ArtistRepositoryImp(
-            artistRemoteDataSource,
-            artistLocalDataSource,
-            artistCacheDataSource)
-    }
-
     @Singleton
-    @Provides
     fun provideTvShowRepository(
-        tvShowRemoteDataSource: TvShowRemoteDataSource,
+        tvShowRemoteDatasource: TvShowRemoteDatasource,
         tvShowLocalDataSource: TvShowLocalDataSource,
         tvShowCacheDataSource: TvShowCacheDataSource
-    ): TvShowRepository{
-        return TvShowRepositoryImp(
-            tvShowRemoteDataSource,
+    ): TvShowRepository {
+
+        return TvShowRepositoryImpl(
+            tvShowRemoteDatasource,
             tvShowLocalDataSource,
-            tvShowCacheDataSource)
+            tvShowCacheDataSource
+        )
+
+
+    }
+
+    @Provides
+    @Singleton
+    fun provideArtistRepository(
+        artistRemoteDatasource: ArtistRemoteDatasource,
+        artistLocalDataSource: ArtistLocalDataSource,
+        artistCacheDataSource: ArtistCacheDataSource
+    ): ArtistRepository {
+
+        return ArtistRepositoryImpl(
+            artistRemoteDatasource,
+            artistLocalDataSource,
+            artistCacheDataSource
+        )
     }
 }

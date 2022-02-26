@@ -2,8 +2,9 @@ package irawan.electroshock.tmdbclient.domain.usecase
 
 import irawan.electroshock.tmdbclient.data.model.artist.Artist
 import irawan.electroshock.tmdbclient.domain.repository.ArtistRepository
+import javax.inject.Inject
 
-class GetArtistUseCase(private val repository: ArtistRepository) {
+class GetArtistsUseCase(private val artistRepository: ArtistRepository) {
+    suspend fun execute():List<Artist>? = artistRepository.getArtists()
 
-    suspend fun execute():List<Artist>? = repository.getAllArtists()
 }
