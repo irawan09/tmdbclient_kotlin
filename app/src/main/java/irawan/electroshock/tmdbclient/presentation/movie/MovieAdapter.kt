@@ -1,7 +1,6 @@
 package irawan.electroshock.tmdbclient.presentation.movie
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -38,8 +37,7 @@ class MovieAdapter():RecyclerView.Adapter<MyViewHolder>()  {
     }
 }
 
-class MyViewHolder(val itemBinding: ListItemBinding):
-    RecyclerView.ViewHolder(itemBinding.root) {
+class MyViewHolder(val itemBinding: ListItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(movie:Movie){
             itemBinding.titleTextView.text = movie.title

@@ -21,6 +21,7 @@ class MovieActivity : AppCompatActivity() {
     private lateinit var movieViewModel: MovieViewModel
     private lateinit var binding:ActivityMovieBinding
     private lateinit var adapter:MovieAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_movie)
@@ -46,7 +47,7 @@ class MovieActivity : AppCompatActivity() {
     private fun displayPopularMovie(){
         binding.movieProgressBar.visibility = View.VISIBLE
         val responseLiveData = movieViewModel.getMovies()
-        responseLiveData.observe(this, Observer {
+        responseLiveData.observe(this, {
             if (it != null){
                 adapter.setList(it)
                 adapter.notifyDataSetChanged()
