@@ -15,8 +15,6 @@ class TvShowAdapter :RecyclerView.Adapter<MyViewHolder>() {
     fun setList(tvShow: List<TvShow>){
         tvShowList.clear()
         tvShowList.addAll(tvShow)
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
