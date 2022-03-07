@@ -9,7 +9,7 @@ import irawan.electroshock.tmdbclient.R
 import irawan.electroshock.tmdbclient.data.model.movie.Movie
 import irawan.electroshock.tmdbclient.databinding.ListItemBinding
 
-class MovieAdapter():RecyclerView.Adapter<MyViewHolder>()  {
+class MovieAdapter :RecyclerView.Adapter<MyViewHolder>()  {
     private val movieList = ArrayList<Movie>()
 
     fun setList(movie: List<Movie>){
@@ -37,12 +37,12 @@ class MovieAdapter():RecyclerView.Adapter<MyViewHolder>()  {
     }
 }
 
-class MyViewHolder(val itemBinding: ListItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
+class MyViewHolder(private val itemBinding: ListItemBinding): RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(movie:Movie){
             itemBinding.titleTextView.text = movie.title
             itemBinding.descriptionTextView.text = movie.overview
-            val posterURL:String?= "https://image.tmdb.org/t/p/w500"+movie.posterPath
+            val posterURL: String = "https://image.tmdb.org/t/p/w500"+movie.posterPath
 
             Glide.with(itemBinding.imageView.context)
                 .load(posterURL)

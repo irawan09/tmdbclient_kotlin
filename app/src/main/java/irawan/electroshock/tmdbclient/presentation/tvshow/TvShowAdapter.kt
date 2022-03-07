@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import irawan.electroshock.tmdbclient.data.model.tvshow.TvShow
 import irawan.electroshock.tmdbclient.databinding.ListItemBinding
 
-class TvShowAdapter():RecyclerView.Adapter<MyViewHolder>() {
+class TvShowAdapter :RecyclerView.Adapter<MyViewHolder>() {
     private val tvShowList = ArrayList<TvShow>()
 
     fun setList(tvShow: List<TvShow>){
@@ -39,12 +39,12 @@ class TvShowAdapter():RecyclerView.Adapter<MyViewHolder>() {
     }
 }
 
-class MyViewHolder(val itemBinding: ListItemBinding):RecyclerView.ViewHolder(itemBinding.root){
+class MyViewHolder(private val itemBinding: ListItemBinding):RecyclerView.ViewHolder(itemBinding.root){
 
     fun bind(tvShow: TvShow){
         itemBinding.titleTextView.text = tvShow.name
         itemBinding.descriptionTextView.text = tvShow.overview
-        val posterURL:String? = "https://image.tmdb.org/t/p/w500"+tvShow.posterPath
+        val posterURL: String = "https://image.tmdb.org/t/p/w500"+tvShow.posterPath
 
         Glide.with(itemBinding.imageView.context)
             .load(posterURL)
