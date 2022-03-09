@@ -9,7 +9,7 @@ import irawan.electroshock.tmdbclient.R
 import irawan.electroshock.tmdbclient.data.model.movie.Movie
 import irawan.electroshock.tmdbclient.databinding.ListItemBinding
 
-class MovieAdapter :RecyclerView.Adapter<MyViewHolder>()  {
+class MovieAdapter:RecyclerView.Adapter<MyViewHolder>()  {
     private val movieList = ArrayList<Movie>()
 
     fun setList(movie: List<Movie>){

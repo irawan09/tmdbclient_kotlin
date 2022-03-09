@@ -2,7 +2,6 @@ package irawan.electroshock.tmdbclient.presentation.movie
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -11,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import irawan.electroshock.tmdbclient.R
@@ -37,8 +35,6 @@ class MovieActivity : AppCompatActivity() {
             .get(MovieViewModel::class.java)
 
         initRecyclerView()
-
-
     }
 
     private fun initRecyclerView(){

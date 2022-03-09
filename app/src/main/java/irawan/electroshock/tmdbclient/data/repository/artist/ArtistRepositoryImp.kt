@@ -24,7 +24,7 @@ class ArtistRepositoryImpl(
         return newListOfArtist
     }
 
-    suspend fun getArtistsFromAPI(): List<Artist> {
+    private suspend fun getArtistsFromAPI(): List<Artist> {
         lateinit var artistList: List<Artist>
         try {
             val response = artistRemoteDatasource.getArtists()
@@ -38,7 +38,7 @@ class ArtistRepositoryImpl(
         return artistList
     }
 
-    suspend fun getArtistsFromDB():List<Artist>{
+    private suspend fun getArtistsFromDB():List<Artist>{
         lateinit var artistList: List<Artist>
         try {
             artistList = artistLocalDataSource.getArtistsFromDB()
@@ -48,7 +48,7 @@ class ArtistRepositoryImpl(
         if(artistList.size>0){
             return artistList
         }else{
-            artistList=getArtistsFromDB()
+            artistList=getArtistsFromAPI()
             artistLocalDataSource.saveArtistsToDB(artistList)
         }
 
