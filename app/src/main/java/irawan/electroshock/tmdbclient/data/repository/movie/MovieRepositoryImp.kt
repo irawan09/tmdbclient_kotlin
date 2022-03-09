@@ -12,11 +12,11 @@ class MovieRepositoryImpl(
     private val movieLocalDataSource: MovieLocalDataSource,
     private val movieCacheDataSource: MovieCacheDataSource
 ) : MovieRepository {
-    override suspend fun getMovies(): List<Movie>? {
+    override suspend fun getMovies(): List<Movie> {
         return getMoviesFromCache()
     }
 
-    override suspend fun updateMovies(): List<Movie>? {
+    override suspend fun updateMovies(): List<Movie> {
         val newListOfMovies = getMoviesFromAPI()
         movieLocalDataSource.clearAll()
         movieLocalDataSource.saveMoviesToDB(newListOfMovies)
@@ -45,7 +45,7 @@ class MovieRepositoryImpl(
         } catch (exception: Exception) {
             Log.i("MyTag", exception.message.toString())
         }
-        if(movieList.size>0){
+        if(movieList.isNotEmpty()){
             return movieList
         }else{
             movieList=getMoviesFromAPI()
@@ -62,7 +62,7 @@ class MovieRepositoryImpl(
         } catch (exception: Exception) {
             Log.i("MyTag", exception.message.toString())
         }
-        if(movieList.size>0){
+        if(movieList.isNotEmpty()){
             return movieList
         }else{
             movieList=getMoviesFromDB()

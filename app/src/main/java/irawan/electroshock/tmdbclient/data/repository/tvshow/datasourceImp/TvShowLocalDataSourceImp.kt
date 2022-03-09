@@ -6,7 +6,6 @@ import irawan.electroshock.tmdbclient.data.repository.tvshow.datasource.TvShowLo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class TvShowLocalDataSourceImpl(private val tvDao:TvShowDao):
     TvShowLocalDataSource {

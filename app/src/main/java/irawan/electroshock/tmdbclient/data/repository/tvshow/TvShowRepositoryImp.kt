@@ -12,11 +12,11 @@ class TvShowRepositoryImpl(
     private val tvShowLocalDataSource: TvShowLocalDataSource,
     private val tvShowCacheDataSource: TvShowCacheDataSource
 ) : TvShowRepository {
-    override suspend fun getTvShows(): List<TvShow>? {
+    override suspend fun getTvShows(): List<TvShow> {
         return getTvShowsFromCache()
     }
 
-    override suspend fun updateTvShows(): List<TvShow>? {
+    override suspend fun updateTvShows(): List<TvShow> {
         val newListOfTvShows = getTvShowsFromAPI()
         tvShowLocalDataSource.clearAll()
         tvShowLocalDataSource.saveTvShowsToDB(newListOfTvShows)
@@ -24,7 +24,7 @@ class TvShowRepositoryImpl(
         return newListOfTvShows
     }
 
-    suspend fun getTvShowsFromAPI(): List<TvShow> {
+    private suspend fun getTvShowsFromAPI(): List<TvShow> {
         lateinit var tvShowList: List<TvShow>
         try {
             val response = tvShowRemoteDatasource.getTvShows()
@@ -38,14 +38,14 @@ class TvShowRepositoryImpl(
         return tvShowList
     }
 
-    suspend fun getTvShowsFromDB():List<TvShow>{
+    private suspend fun getTvShowsFromDB():List<TvShow>{
         lateinit var tvShowsList: List<TvShow>
         try {
             tvShowsList = tvShowLocalDataSource.getTvShowsFromDB()
         } catch (exception: Exception) {
             Log.i("MyTag", exception.message.toString())
         }
-        if(tvShowsList.size>0){
+        if(tvShowsList.isNotEmpty()){
             return tvShowsList
         }else{
             tvShowsList=getTvShowsFromAPI()
@@ -55,14 +55,14 @@ class TvShowRepositoryImpl(
         return tvShowsList
     }
 
-    suspend fun getTvShowsFromCache():List<TvShow>{
+    private suspend fun getTvShowsFromCache():List<TvShow>{
         lateinit var tvShowsList: List<TvShow>
         try {
             tvShowsList =tvShowCacheDataSource.getTvShowsFromCache()
         } catch (exception: Exception) {
             Log.i("MyTag", exception.message.toString())
         }
-        if(tvShowsList.size>0){
+        if(tvShowsList.isNotEmpty()){
             return tvShowsList
         }else{
             tvShowsList=getTvShowsFromDB()

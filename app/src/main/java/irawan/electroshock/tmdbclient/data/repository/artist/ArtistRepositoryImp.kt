@@ -12,11 +12,11 @@ class ArtistRepositoryImpl(
     private val artistLocalDataSource: ArtistLocalDataSource,
     private val artistCacheDataSource: ArtistCacheDataSource
 ) : ArtistRepository {
-    override suspend fun getArtists(): List<Artist>? {
+    override suspend fun getArtists(): List<Artist> {
         return getArtistsFromCache()
     }
 
-    override suspend fun updateArtists(): List<Artist>? {
+    override suspend fun updateArtists(): List<Artist> {
         val newListOfArtist = getArtistsFromAPI()
         artistLocalDataSource.clearAll()
         artistLocalDataSource.saveArtistsToDB(newListOfArtist)
@@ -45,7 +45,7 @@ class ArtistRepositoryImpl(
         } catch (exception: Exception) {
             Log.i("MyTag", exception.message.toString())
         }
-        if(artistList.size>0){
+        if(artistList.isNotEmpty()){
             return artistList
         }else{
             artistList=getArtistsFromAPI()
@@ -55,14 +55,14 @@ class ArtistRepositoryImpl(
         return artistList
     }
 
-    suspend fun getArtistsFromCache():List<Artist>{
+    private suspend fun getArtistsFromCache():List<Artist>{
         lateinit var artistList: List<Artist>
         try {
             artistList =artistCacheDataSource.getArtistsFromCache()
         } catch (exception: Exception) {
             Log.i("MyTag", exception.message.toString())
         }
-        if(artistList.size>0){
+        if(artistList.isNotEmpty()){
             return artistList
         }else{
             artistList=getArtistsFromDB()
