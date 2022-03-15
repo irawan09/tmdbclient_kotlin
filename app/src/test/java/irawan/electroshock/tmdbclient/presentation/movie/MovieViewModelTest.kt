@@ -61,8 +61,22 @@ class MovieViewModelTest{
     @Test
     fun updateMovies_returnsUpdatedList(){
         val movies = mutableListOf<Movie>()
-        movies.add(Movie(3, "overview3", "path3", "date3", "title3"))
-        movies.add(Movie(4, "overview4", "path4", "date4", "title4"))
+        movies.add(
+            Movie(3,
+                "overview3",
+                "posterPath3",
+                "date3",
+                "title3"
+            )
+        )
+        movies.add(
+            Movie(4,
+                "overview4",
+                "posterPath4",
+                "date4",
+                "title4"
+            )
+        )
 
         val updatedList = movieViewModel.updateMovies().getOrAwaitValue()
         assertThat(updatedList).isEqualTo(movies)
